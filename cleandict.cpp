@@ -44,10 +44,13 @@ bool read_words_file(const std::string &filename, std::list<std::string> &words)
 
 bool save_words_file(const std::string &filename, const std::list<std::string> &words){
     std::ofstream file(filename);
-    for(auto it = words.begin(); it != words.end(); it++)
-        file << *it << std::endl;
-    file.close();
-    return true;
+    if(file.is_open()){
+        for(auto it = words.begin(); it != words.end(); it++)
+            file << *it << std::endl;
+        file.close();
+        return true; 
+    }
+    return false;
 }
 
 int main(int argc, char **argv){
