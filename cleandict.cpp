@@ -21,7 +21,6 @@ void help(){
     std::cout << "-A        save only alpha\n\t";
     std::cout << "-p        remove punct\n\t";
     std::cout << "-P        save only punct\n\t";
-    std::cout << "-s        sort words\n\t";
     std::cout << "-u        unique words\n\t";
     std::cout << "--min     word length min\n\t";
     std::cout << "--max     word length max\n\t";
@@ -66,7 +65,6 @@ int main(int argc, char **argv){
     bool alpha = false;
     bool del_punct = false;
     bool punct = false;
-    bool sort = false;
     bool uniq = false;
     size_t len_min = 0;
     size_t len_max = MAXLENPASS;
@@ -78,7 +76,7 @@ int main(int argc, char **argv){
         {NULL, 0, NULL, 0}
     };
     opterr = false;
-    while((opt = getopt_long(argc, argv, "f:o:husdDaApP", longopts, &index_opt)) != EOF){
+    while((opt = getopt_long(argc, argv, "f:o:hudDaApP", longopts, &index_opt)) != EOF){
         switch(opt){
             case 0 :
                 len_min = std::stol(optarg);
@@ -113,9 +111,6 @@ int main(int argc, char **argv){
                 break;
             case 'P' :
                 punct = true;
-                break;
-            case 's' :
-                sort = true;
                 break;
             case 'u' :
                 uniq = true;
