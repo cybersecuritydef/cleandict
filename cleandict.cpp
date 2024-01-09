@@ -83,7 +83,7 @@ int main(int argc, char **argv){
         switch(opt){
             case 0 :
                 len_min = std::stol(optarg);
-                if(len_min > len_max)
+                if(len_min > len_max || len_min < 0)
                     DIE("[-] Invalid length min!");
                 break;
             case 1 :
