@@ -79,6 +79,8 @@ int main(int argc, char **argv){
         switch(opt){
             case 0 :
                 len_min = std::stol(optarg);
+                if(len_min > len_max)
+                    exit(EOF);
                 break;
             case 1 :
                 len_max = std::stol(optarg);
