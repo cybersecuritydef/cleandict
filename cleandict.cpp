@@ -20,6 +20,8 @@ void help(){
     std::cout << "-A        save only alpha\n\t";
     std::cout << "-p        remove punct\n\t";
     std::cout << "-P        save only punct\n\t";
+    std::cout << "-s        sort words\n\t";
+    std::cout << "-u        unique words\n\t";
     std::cout << "--min     word length min\n\t";
     std::cout << "--max     word length max\n\t";
     std::cout << "-h        Using help\n";
