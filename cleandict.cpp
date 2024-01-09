@@ -63,6 +63,8 @@ int main(int argc, char **argv){
     bool alpha = false;
     bool del_punct = false;
     bool punct = false;
+    bool sorted = false;
+    bool unique = false;
     size_t len_min = 0;
     size_t len_max = MAXLENPASS;
     int opt = 0;
