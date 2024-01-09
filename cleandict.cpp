@@ -8,7 +8,7 @@
 #include <getopt.h>
 
 #include "filter.h"
-#define MAXPASS 256
+#define MAXLENPASS 256
 void help(){
     std::cout << "OPTIONS:\n\t";
     std::cout << "-f        file dict \n\t";
@@ -62,7 +62,7 @@ int main(int argc, char **argv){
     bool del_punct = false;
     bool punct = false;
     size_t len_min = 0;
-    size_t len_max = MAXPASS;
+    size_t len_max = MAXLENPASS;
     int opt = 0;
     int index_opt = 0;
     struct option longopts[] {
