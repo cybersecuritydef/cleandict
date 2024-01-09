@@ -29,8 +29,7 @@ void help(){
     std::cout << "cleandict -f dict.txt -d --min=6 --max=10 -o newdict.txt\n";
 }
 
-std::set<std::string> read_words_file(const std::string &filename){
-    std::set<std::string> words;
+bool read_words_file(const std::string &filename, std::list<std::string> &words){    
     std::string line;
     std::ifstream file(filename, std::ios::in);
     if(file.is_open()){
@@ -38,10 +37,9 @@ std::set<std::string> read_words_file(const std::string &filename){
             words.insert(line);
         }
         file.close();
+        return true;
     }
-    else
-        std::cerr << "[-] File not open!" << std::endl;
-    return words;
+    return false;
 }
 
 bool save_words_file(const std::string &filename, const std::list<std::string> &words){
