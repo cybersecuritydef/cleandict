@@ -21,21 +21,20 @@ void help(){
     std::cout << "-A        save only alpha\n\t";
     std::cout << "-p        remove punct\n\t";
     std::cout << "-P        save only punct\n\t";
-    std::cout << "-u        unique words\n\t";
     std::cout << "--min     word length min\n\t";
     std::cout << "--max     word length max\n\t";
     std::cout << "-h        Using help\n";
     std::cout << "EXAMPLES:\n\t";
-    std::cout << "cleandict -f dict.txt --min=6 -o newdict.txt\n\t";    
+    std::cout << "cleandict -f dict.txt --min=6 -o newdict.txt\n\t";
     std::cout << "cleandict -f dict.txt -d --min=6 --max=10 -o newdict.txt\n";
 }
 
-bool read_words_file(const std::string &filename, std::list<std::string> &words){    
+bool read_words_file(const std::string &filename, std::list<std::string> &words){
     std::string line;
     std::ifstream file(filename, std::ios::in);
     if(file.is_open()){
         while(std::getline(file, line)){
-            words.insert(line);
+            words.push_back(line);
         }
         file.close();
         return true;
@@ -49,9 +48,14 @@ bool save_words_file(const std::string &filename, const std::list<std::string> &
         for(auto it = words.begin(); it != words.end(); it++)
             file << *it << std::endl;
         file.close();
-        return true; 
+        return true;
     }
     return false;
+}
+
+void print_words(const std::list<std::string> &words){
+    for(auto iter = words.begin(); iter != words.end(); iter++)
+        std::cout << *iter << std::endl;
 }
 
 int main(int argc, char **argv){
@@ -65,7 +69,6 @@ int main(int argc, char **argv){
     bool alpha = false;
     bool del_punct = false;
     bool punct = false;
-    bool uniq = false;
     size_t len_min = 0;
     size_t len_max = MAXLENPASS;
     int opt = 0;
@@ -76,12 +79,12 @@ int main(int argc, char **argv){
         {NULL, 0, NULL, 0}
     };
     opterr = false;
-    while((opt = getopt_long(argc, argv, "f:o:hudDaApP", longopts, &index_opt)) != EOF){
+    while((opt = getopt_long(argc, argv, "f:o:hdDaApP", longopts, &index_opt)) != EOF){
         switch(opt){
             case 0 :
                 len_min = std::stol(optarg);
                 if(len_min > len_max)
-                    DIE("[-] Invalid length min !");
+                    DIE("[-] Invalid length min!");
                 break;
             case 1 :
                 len_max = std::stol(optarg);
@@ -112,48 +115,57 @@ int main(int argc, char **argv){
             case 'P' :
                 punct = true;
                 break;
-            case 'u' :
-                uniq = true;
-                break;
             case 'h' :
                 help();
                 return 0;
             default :
-                DIE("[-] Invalid argument !");
+                DIE("[-] Invalid argument!");
         }
     }
     std::cout << "[+] Read from file..." << std::endl << std::endl;
     if(read_words_file(infile, words)){
         if(words.size() > 0){
+            std::cout << "[!] Sorting..." << std::endl << std::endl;
+            words.sort();
+            std::cout << "[!] Remove duplicate..." << std::endl << std::endl;
+            words.unique();
             std::cout << "[!] Clearning process..." << std::endl << std::endl;
             filter.remove_space(words);
-    
+
             if(digits)
                 filter.digits(words);
             else if(del_digits)
                 filter.remove_digits(words);
-    
+
             if(alpha)
                 filter.alpha(words);
             else if(del_alpha)
                 filter.remove_alpha(words);
-    
+
             if(punct)
                 filter.punct(words);
             else if(del_punct)
                 filter.remove_punct(words);
-    
+
             if(len_min > 0 && len_max > 0)
                 filter.words_length(words, len_min, len_max);
-    
-            std::cout << "[+] Words count => " << words.size() << std::endl << std::endl;
-            std::cout << "[+] Save to file..." << std::endl << std::endl;
-            save_words_file(outfile, words);
+
+            std::cout << "[!] Save to file..." << std::endl << std::endl;
+            if(! outfile.empty()){
+                if(save_words_file(outfile, words)){
+                    std::cout << "[+] Successful! " << std::endl << std::endl;
+                    std::cout << "[+] Words count: " << words.size() << std::endl << std::endl;
+                }
+                else
+                    DIE("[-] Error save to file !");
+            }
+            else
+                print_words(words);
         }
         else
-            DIE("[-] Wordlist empty !");
+            DIE("[-] Wordlist empty!");
     }
     else
-        DIE("[-] File not found !");
+        DIE("[-] File not found!");
     return 0;
 }
