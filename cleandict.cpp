@@ -122,7 +122,7 @@ int main(int argc, char **argv){
                 DIE("[-] Invalid argument!");
         }
     }
-    std::cout << "[+] Read from file..." << std::endl << std::endl;
+    std::cout << "[!] Read from file..." << std::endl << std::endl;
     if(read_words_file(infile, words)){
         if(words.size() > 0){
             std::cout << "[!] Sorting..." << std::endl << std::endl;
