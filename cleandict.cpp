@@ -88,7 +88,7 @@ int main(int argc, char **argv){
                 break;
             case 1 :
                 len_max = std::stol(optarg);
-                if(len_max > MAXLENPASS)
+                if(len_max > MAXLENPASS || len_max < len_min)
                   len_max = MAXLENPASS;
                 break;
             case 'f' :
