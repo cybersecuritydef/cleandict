@@ -2,7 +2,6 @@
 #include <fstream>
 #include <algorithm>
 #include <list>
-#include <set>
 #include <sstream>
 
 #include <getopt.h>
