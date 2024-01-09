@@ -17,7 +17,7 @@ void Filter::remove_space(std::list<std::string> &words){
     }
 }
 
-void Filter::words_length(std::list<std::string> &words, size_t len_min, size_t len_max){
+void Filter::words_length(std::list<std::string> &words, const size_t len_min, const size_t len_max){
     std::list<std::string>::iterator it = words.begin();
     while(it != words.end()){
         std::string s = *it;
