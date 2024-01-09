@@ -23,8 +23,7 @@ void help(){
     std::cout << "--max     word length max\n\t";
     std::cout << "-h        Using help\n";
     std::cout << "EXAMPLES:\n\t";
-    std::cout << "cleandict -f dict.txt --min=6 -o newdict.txt\n\t";
-    std::cout << "cleandict --conding -f dict.txt -o newdict.txt\n\t";
+    std::cout << "cleandict -f dict.txt --min=6 -o newdict.txt\n\t";    
     std::cout << "cleandict -f dict.txt -d --min=6 --max=10 -o newdict.txt\n";
 }
 
