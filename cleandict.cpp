@@ -114,31 +114,31 @@ int main(int argc, char **argv){
     std::cout << "[+] Read from file..." << std::endl << std::endl;
     if(read_words_file(infile, words)){
         if(words.size() > 0){
-        std::cout << "[!] Clearning process..." << std::endl << std::endl;
-        filter.remove_space(words);
-
-        if(digits)
-            filter.digits(words);
-        else if(del_digits)
-            filter.remove_digits(words);
-
-        if(alpha)
-            filter.alpha(words);
-        else if(del_alpha)
-            filter.remove_alpha(words);
-
-        if(punct)
-            filter.punct(words);
-        else if(del_punct)
-            filter.remove_punct(words);
-
-        if(len_min > 0 && len_max > 0)
-            filter.words_length(words, len_min, len_max);
-
-        std::cout << "[+] Words count => " << words.size() << std::endl << std::endl;
-        std::cout << "[+] Save to file..." << std::endl << std::endl;
-        save_words_file(outfile, words);
-    }
+            std::cout << "[!] Clearning process..." << std::endl << std::endl;
+            filter.remove_space(words);
+    
+            if(digits)
+                filter.digits(words);
+            else if(del_digits)
+                filter.remove_digits(words);
+    
+            if(alpha)
+                filter.alpha(words);
+            else if(del_alpha)
+                filter.remove_alpha(words);
+    
+            if(punct)
+                filter.punct(words);
+            else if(del_punct)
+                filter.remove_punct(words);
+    
+            if(len_min > 0 && len_max > 0)
+                filter.words_length(words, len_min, len_max);
+    
+            std::cout << "[+] Words count => " << words.size() << std::endl << std::endl;
+            std::cout << "[+] Save to file..." << std::endl << std::endl;
+            save_words_file(outfile, words);
+        }
     }
     return 0;
 }
