@@ -4,13 +4,15 @@
 #include <iostream>
 #include <list>
 
+#define MAXLENPASS 256
+
 class Filter{
 
 public:
     Filter(){}
     ~Filter(){}
 
-    void words_length(std::list<std::string> &words, const size_t len=0, const size_t len_max=63);
+    void words_length(std::list<std::string> &words, const size_t len=0, const size_t len_max=MAXLENPASS);
 
     void remove_space(std::list<std::string> &words);
 
