@@ -10,7 +10,7 @@ public:
     Filter(){}
     ~Filter(){}
 
-    void words_length(std::list<std::string> &words, size_t len=0, size_t len_max=63);
+    void words_length(std::list<std::string> &words, const size_t len=0, const size_t len_max=63);
 
     void remove_space(std::list<std::string> &words);
 
