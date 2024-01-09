@@ -75,7 +75,7 @@ int main(int argc, char **argv){
         {NULL, 0, NULL, 0}
     };
     opterr = false;
-    while((opt = getopt_long(argc, argv, "f:o:hdDaApP", longopts, &index_opt)) != EOF){
+    while((opt = getopt_long(argc, argv, "f:o:husdDaApP", longopts, &index_opt)) != EOF){
         switch(opt){
             case 0 :
                 len_min = std::stol(optarg);
@@ -106,6 +106,12 @@ int main(int argc, char **argv){
                 break;
             case 'P' :
                 punct = true;
+                break;
+            case 's' :
+                sort = true;
+                break;
+            case 'u' :
+                uniq = true;
                 break;
             case 'h' :
                 help();
