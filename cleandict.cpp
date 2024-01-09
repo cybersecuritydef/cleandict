@@ -8,7 +8,9 @@
 #include <getopt.h>
 
 #include "filter.h"
+
 #define MAXLENPASS 256
+
 void help(){
     std::cout << "OPTIONS:\n\t";
     std::cout << "-f        file dict \n\t";
