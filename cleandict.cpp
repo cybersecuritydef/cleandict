@@ -53,7 +53,7 @@ bool save_words_file(const std::string &filename, const std::list<std::string> &
 int main(int argc, char **argv){
     std::string outfile;
     std::string infile;
-    std::set<std::string> un;
+    std::list<std::string> words;
     Filter filter;
     bool del_digits = false;
     bool digits = false;
@@ -112,9 +112,8 @@ int main(int argc, char **argv){
         }
     }
     std::cout << "[+] Read from file..." << std::endl << std::endl;
-    un = read_words_file(infile);
-    std::list<std::string> words(un.begin(), un.end());
-    if(words.size() > 0){
+    if(read_words_file(infile, words)){
+        if(words.size() > 0){
         std::cout << "[!] Clearning process..." << std::endl << std::endl;
         filter.remove_space(words);
 
@@ -139,6 +138,7 @@ int main(int argc, char **argv){
         std::cout << "[+] Words count => " << words.size() << std::endl << std::endl;
         std::cout << "[+] Save to file..." << std::endl << std::endl;
         save_words_file(outfile, words);
+    }
     }
     return 0;
 }
