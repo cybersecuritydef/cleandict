@@ -147,8 +147,7 @@ int main(int argc, char **argv){
             else if(del_punct)
                 filter.remove_punct(words);
 
-            if(len_min > 0 && len_max > 0)
-                filter.words_length(words, len_min, len_max);
+            filter.words_length(words, len_min, len_max);
 
             std::cout << "[!] Save to file..." << std::endl << std::endl;
             if(! outfile.empty()){
