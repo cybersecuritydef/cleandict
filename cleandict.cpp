@@ -8,8 +8,10 @@
 
 #include "filter.h"
 
-#define DIE(msg) std::cerr << msg << std::endl; \
-                 exit(EOF);
+void die(const std::string &msg){
+    std::cerr << msg << std::endl;
+    exit(EOF);
+}
 
 void help(){
     std::cout << "OPTIONS:\n\t";
@@ -84,7 +86,7 @@ int main(int argc, char **argv){
             case 0 :
                 len_min = std::stol(optarg);
                 if(len_min > len_max || len_min < 0)
-                    DIE("[-] Invalid length min!");
+                    die("[-] Invalid length min!");
                 break;
             case 1 :
                 len_max = std::stol(optarg);
@@ -119,7 +121,7 @@ int main(int argc, char **argv){
                 help();
                 return 0;
             default :
-                DIE("[-] Invalid argument!");
+                die("[-] Invalid argument!");
         }
     }
     std::cout << "[!] Read from file..." << std::endl << std::endl;
@@ -156,15 +158,15 @@ int main(int argc, char **argv){
                     std::cout << "[+] Words count: " << words.size() << std::endl << std::endl;
                 }
                 else
-                    DIE("[-] Error save to file !");
+                    die("[-] Error save to file !");
             }
             else
                 print_words(words);
         }
         else
-            DIE("[-] Wordlist empty!");
+            die("[-] Wordlist empty!");
     }
     else
-        DIE("[-] File not found!");
+        die("[-] File not found!");
     return 0;
 }
