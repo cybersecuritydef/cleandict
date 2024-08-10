@@ -76,19 +76,19 @@ int main(int argc, char **argv){
     int opt = 0;
     int index_opt = 0;
     struct option longopts[] = {
-        {"min", 1, NULL, 0},
-        {"max", 1, NULL, 1},
+        {"min", 1, NULL, 'm'},
+        {"max", 1, NULL, 'M'},
         {NULL, 0, NULL, 0}
     };
     opterr = false;
-    while((opt = getopt_long(argc, argv, "f:o:hdDaApP", longopts, &index_opt)) != EOF){
+    while((opt = getopt_long(argc, argv, "f:o:m:M:hdDaApP", longopts, &index_opt)) != EOF){
         switch(opt){
-            case 0 :
+            case 'm' :
                 len_min = std::stol(optarg);
                 if(len_min > len_max || len_min < 0)
                     die("[-] Invalid length min!");
                 break;
-            case 1 :
+            case 'M' :
                 len_max = std::stol(optarg);
                 if(len_max > MAXLENPASS || len_max < len_min)
                   len_max = MAXLENPASS;
