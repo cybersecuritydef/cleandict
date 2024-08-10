@@ -75,7 +75,7 @@ int main(int argc, char **argv){
     size_t len_max = MAXLENPASS;
     int opt = 0;
     int index_opt = 0;
-    struct option longopts[] {
+    struct option longopts[] = {
         {"min", 1, NULL, 0},
         {"max", 1, NULL, 1},
         {NULL, 0, NULL, 0}
