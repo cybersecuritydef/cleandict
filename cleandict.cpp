@@ -158,7 +158,7 @@ int main(int argc, char **argv){
                     std::cout << "[+] Words count: " << words.size() << std::endl << std::endl;
                 }
                 else
-                    die("[-] Error save to file !");
+                    die("[-] Error save to file!");
             }
             else
                 print_words(words);
