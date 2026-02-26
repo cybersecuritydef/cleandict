@@ -124,32 +124,36 @@ int main(int argc, char **argv){
                 die("[-] Invalid argument!");
         }
     }
-    std::cout << "[!] Read from file..." << std::endl << std::endl;
+    std::cout << "\n[!] Read from file..." << std::endl << std::endl;
     if(read_words_file(infile, words)){
         if(words.size() > 0){
-            std::cout << "[!] Sorting..." << std::endl << std::endl;
-            words.sort();
             std::cout << "[!] Remove duplicate..." << std::endl << std::endl;
+            words.sort();
             words.unique();
             std::cout << "[!] Clearning process..." << std::endl << std::endl;
-            filter.remove_space(words);
+            filter.removeSpace(words);
+            filter.removeOther(words);
 
             if(digits)
                 filter.digits(words);
             else if(del_digits)
-                filter.remove_digits(words);
+                filter.removeDigits(words);
 
             if(alpha)
                 filter.alpha(words);
             else if(del_alpha)
-                filter.remove_alpha(words);
+                filter.removeAlpha(words);
 
             if(punct)
                 filter.punct(words);
             else if(del_punct)
-                filter.remove_punct(words);
+                filter.removePunct(words);
 
-            filter.words_length(words, len_min, len_max);
+            filter.wordsLength(words, len_min, len_max);
+
+            std::cout << "[!] Sorting..." << std::endl << std::endl;
+            words.sort();
+            words.unique();
 
             std::cout << "[!] Save to file..." << std::endl << std::endl;
             if(! outfile.empty()){
