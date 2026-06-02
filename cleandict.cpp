@@ -127,9 +127,6 @@ int main(int argc, char **argv){
     std::cout << "\n[!] Read from file..." << std::endl << std::endl;
     if(read_words_file(infile, words)){
         if(words.size() > 0){
-            std::cout << "[!] Remove duplicate..." << std::endl << std::endl;
-            words.sort();
-            words.unique();
             std::cout << "[!] Clearning process..." << std::endl << std::endl;
             filter.removeSpace(words);
             filter.removeOther(words);
