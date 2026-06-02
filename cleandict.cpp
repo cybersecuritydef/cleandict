@@ -47,7 +47,7 @@ bool read_words_file(const std::string &filename, std::list<std::string> &words)
 bool save_words_file(const std::string &filename, const std::list<std::string> &words){
     std::ofstream file(filename);
     if(file.is_open()){
-        for(auto it = words.begin(); it != words.end(); it++)
+        for(auto it = words.begin(); it != words.end(); ++it)
             file << *it << std::endl;
         file.close();
         return true;
@@ -56,7 +56,7 @@ bool save_words_file(const std::string &filename, const std::list<std::string> &
 }
 
 void print_words(const std::list<std::string> &words){
-    for(auto iter = words.begin(); iter != words.end(); iter++)
+    for(auto iter = words.begin(); iter != words.end(); ++iter)
         std::cout << *iter << std::endl;
 }
 
