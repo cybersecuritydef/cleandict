@@ -120,9 +120,9 @@ int main(int argc, char **argv){
                 die("[-] Invalid argument!");
         }
     }
-    if(len_min <= 0 || len_min > len_max)
+    if(len_min <= 0)
         die("[-] Invalid length min!");
-    if(len_max > MAXLENPASS || len_max < len_min)
+    if(len_max > MAXLENPASS || len_max <= 0)
         len_max = MAXLENPASS;
     std::cout << "\n[!] Read from file..." << std::endl << std::endl;
     if(read_words_file(infile, words)){
