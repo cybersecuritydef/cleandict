@@ -71,8 +71,8 @@ int main(int argc, char **argv){
     bool alpha = false;
     bool del_punct = false;
     bool punct = false;
-    size_t len_min = 0;
-    size_t len_max = MAXLENPASS;
+    long len_min = 0;
+    long len_max = MAXLENPASS;
     int opt = 0;
     int index_opt = 0;
     struct option longopts[] = {
@@ -85,13 +85,9 @@ int main(int argc, char **argv){
         switch(opt){
             case 'm' :
                 len_min = std::stol(optarg);
-                if(len_min > len_max || len_min == 0)
-                    die("[-] Invalid length min!");
                 break;
             case 'M' :
                 len_max = std::stol(optarg);
-                if(len_max > MAXLENPASS || len_max < len_min)
-                  len_max = MAXLENPASS;
                 break;
             case 'f' :
                 infile = optarg;
@@ -124,6 +120,10 @@ int main(int argc, char **argv){
                 die("[-] Invalid argument!");
         }
     }
+    if(len_min <= 0 || len_min > len_max)
+        die("[-] Invalid length min!");
+    if(len_max > MAXLENPASS || len_max < len_min)
+        len_max = MAXLENPASS;
     std::cout << "\n[!] Read from file..." << std::endl << std::endl;
     if(read_words_file(infile, words)){
         if(words.size() > 0){
