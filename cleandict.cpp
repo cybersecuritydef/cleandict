@@ -15,17 +15,17 @@ void die(const std::string &msg){
 
 void help(){
     std::cout << "OPTIONS:\n\t";
-    std::cout << "-f        file dict \n\t";
-    std::cout << "-o        output words to file\n\t";
-    std::cout << "-d        remove digits\n\t";
-    std::cout << "-D        save only digits\n\t";
-    std::cout << "-a        remove alpha\n\t";
-    std::cout << "-A        save only alpha\n\t";
-    std::cout << "-p            remove punct\n\t";
-    std::cout << "-P            save only punct\n\t";
-    std::cout << "--min, -m     word length min\n\t";
-    std::cout << "--max, -M     word length max\n\t";
-    std::cout << "-h            Using help\n";
+    std::cout << "-f    file dict \n\t";
+    std::cout << "-o    output words to file\n\t";
+    std::cout << "-d    remove digits\n\t";
+    std::cout << "-D    save only digits\n\t";
+    std::cout << "-a    remove alpha\n\t";
+    std::cout << "-A    save only alpha\n\t";
+    std::cout << "-p    remove punct\n\t";
+    std::cout << "-P    save only punct\n\t";
+    std::cout << "-m    word length min\n\t";
+    std::cout << "-M    word length max\n\t";
+    std::cout << "-h    Using help\n";
     std::cout << "EXAMPLES:\n\t";
     std::cout << "cleandict -f dict.txt --min=6 -o newdict.txt\n\t";
     std::cout << "cleandict -f dict.txt -d --min=6 --max=10 -o newdict.txt\n";
