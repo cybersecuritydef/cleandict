@@ -27,8 +27,8 @@ void help(){
     std::cout << "-M    word length max\n\t";
     std::cout << "-h    Using help\n";
     std::cout << "EXAMPLES:\n\t";
-    std::cout << "cleandict -f dict.txt --min=6 -o newdict.txt\n\t";
-    std::cout << "cleandict -f dict.txt -d --min=6 --max=10 -o newdict.txt\n";
+    std::cout << "cleandict -f dict.txt -m 6 -o newdict.txt\n\t";
+    std::cout << "cleandict -f dict.txt -d -m 6 -M 10 -o newdict.txt\n";
 }
 
 bool read_words_file(const std::string &filename, std::list<std::string> &words){
@@ -74,14 +74,8 @@ int main(int argc, char **argv){
     long len_min = 0;
     long len_max = MAXLENPASS;
     int opt = 0;
-    int index_opt = 0;
-    struct option longopts[] = {
-        {"min", 1, NULL, 'm'},
-        {"max", 1, NULL, 'M'},
-        {NULL, 0, NULL, 0}
-    };
     opterr = false;
-    while((opt = getopt_long(argc, argv, "f:o:m:M:hdDaApP", longopts, &index_opt)) != EOF){
+    while((opt = getopt(argc, argv, "f:o:m:M:hdDaApP")) != EOF){
         switch(opt){
             case 'm' :
                 len_min = std::stol(optarg);
