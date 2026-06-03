@@ -144,6 +144,7 @@ int main(int argc, char **argv){
 
             std::cout << "[!] Sorting..." << std::endl << std::endl;
             words.sort();
+            std::cout << "[!] Remove duplicated..." << std::endl << std::endl;
             words.unique();
 
             std::cout << "[!] Save to file..." << std::endl << std::endl;
